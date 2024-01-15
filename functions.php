@@ -10,6 +10,21 @@ defined( 'ABSPATH' ) || exit;
 
 
 
+function understrap_allow_kses_iframe($tags, $context)
+{
+	$tags['iframe'] = array(
+		'src' => true,
+		'width' => true,
+		'height' => true,
+		'class' => true,
+		'frameborder' => true
+	);
+    return $tags;
+}
+add_filter('wp_kses_allowed_html', 'understrap_allow_kses_iframe', 10, 2);
+
+
+
 /**
  * Removes the parent themes stylesheet and scripts from inc/enqueue.php
  */
